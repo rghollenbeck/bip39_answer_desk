@@ -7,7 +7,7 @@ pub mod cli;   // Expose the cli module (if you want to use CLI logic in tests o
 
 pub fn binary_to_word<'a>(word_list: &'a WordList, binary: &str) -> Option<&'a str> {
     word_list.wordlist.iter().find(|w| w.binary == binary).map(|w| w.word.as_str())
-}
+}	
 
 pub fn word_to_binary<'a>(word_list: &'a WordList, word: &str) -> Option<&'a str> {
     word_list.wordlist.iter().find(|w| w.word == word).map(|w| w.binary.as_str())

@@ -1,8 +1,11 @@
 mod cli; // Import the CLI module
 
+//use bip39_answer_desk::bip39::decimal_to_word;
 use clap::Parser;
-use bip39_answer_desk::bip39::{binary_to_word, load_wordlist};
+//use bip39_answer_desk::bip39::{binary_to_word, load_wordlist};
+use bip39_answer_desk::bip39::{binary_to_word, decimal_to_word, word_to_binary, word_to_decimal, load_wordlist};
 use cli::{Cli, Commands}; // Use the Cli and Commands from cli.rs
+
 
 fn main() {
     let cli = Cli::parse(); // Parse the CLI arguments
@@ -22,15 +25,21 @@ fn main() {
             Some(word) => println!("Word: {}", word),
             None => println!("Binary value not found"),
         },
-        Commands::Dw { decimal } => {
-            println!("Decimal to word not implemented yet: {}", decimal);
-        }
-        Commands::Wb { word } => {
-            println!("Word to binary not implemented yet: {}", word);
-        }
-        Commands::Wd { word } => {
-            println!("Word to decimal not implemented yet: {}", word);
-        }
+
+        Commands::Dw { decimal } => match decimal_to_word(&word_list, decimal) {
+            Some(word) => println!("Word: {}", word),
+            None => println!("Decimal value not found"),
+        },
+
+        Commands::Wb { word } => match word_to_binary(&word_list, &word) {
+            Some(binary) => println!("Binary: {}", binary),
+            None => println!("Error: Word not found"),
+        },
+
+        Commands::Wd { word } => match word_to_decimal(&word_list, &word) {
+            Some(decimal) => println!("Decimal: {}", decimal),
+            None => println!("Error: Word not found"),
+        },
     }
 }
 
