@@ -95,7 +95,7 @@ EXAMPLES
         Decimal: 0
 
 AUTHOR
-    Written by rghollenbeck.
+    Written by Rich Hollenbeck.
 
 COPYRIGHT
     This is free software; see the source for copying conditions.
